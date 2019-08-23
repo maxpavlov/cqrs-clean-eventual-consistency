@@ -52,7 +52,7 @@ namespace Ametista.Api
 
             services
                 .AddDbContext<WriteDbContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnectionString"), 
+                options.UseNpgsql(Configuration.GetConnectionString("SqlConnectionString"), 
                 b => b.MigrationsAssembly("Ametista.Infrastructure")));
         }
 

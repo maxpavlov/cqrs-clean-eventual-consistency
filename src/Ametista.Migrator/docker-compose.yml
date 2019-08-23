@@ -1,0 +1,7 @@
+version: '3'
+services:
+  ametista.migrator:
+    image: migrator
+    build:
+      context: ./
+      dockerfile: Dockerfile

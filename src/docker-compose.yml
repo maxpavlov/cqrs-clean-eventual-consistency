@@ -1,17 +1,16 @@
-version: '3.4'
+﻿version: '3.4'
 
 services:
-  mssql:
-    image: microsoft/mssql-server-linux:2017-latest
-    container_name: ametista-mssql
+  sql:
+    image: postgres
+    container_name: ametista-sql
     volumes:
-      - mssql_server_data:/var/opt/mssql/data
+      - db-data:/var/opt/postgres/data
     environment:
-      ACCEPT_EULA: Y
-      MSSQL_PID: Express
-      SA_PASSWORD: MyPassword123456
+      POSTGRES_USER: "sa"
+      POSTGRES_PASSWORD: "MyPassword123456"
     ports:
-      - "1433:1433"
+     - "5432:5432"
 
   nosql.data:
     container_name: ametista-mongodb
@@ -39,7 +38,7 @@ services:
       context: .
       dockerfile: Ametista.Api/Dockerfile
     depends_on:
-      - mssql
+      - sql
       - rabbitmq
       - nosql.data
       - redis.cache
@@ -47,4 +46,4 @@ services:
       - "5101:80"
 
 volumes:
-  mssql_server_data:
+   db-data:
