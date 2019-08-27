@@ -6,3 +6,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "80"
+  sql:
+    ports:
+      - "5432:5432"
