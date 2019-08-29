@@ -3,6 +3,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Ametista.Api
 {
@@ -11,6 +13,18 @@ namespace Ametista.Api
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IConfigurationRoot Configuration
+        {
+            get
+            {
+                var environmentName = Environment.GetEnvironmentVariable("DOTNETCORE_ENVIRONMENT");
+                var builder = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{environmentName}.json", optional: true);
+                return builder.Build();
+            }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

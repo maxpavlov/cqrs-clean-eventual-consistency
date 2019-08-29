@@ -10,6 +10,7 @@
     <Folder Include="Properties" />
     <Folder Include="wwwroot\" />
     <Folder Include="Properties\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
