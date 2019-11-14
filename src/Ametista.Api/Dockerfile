@@ -20,4 +20,4 @@ RUN dotnet publish "Ametista.Api.csproj" -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Ametista.Api.dll"]
+ENTRYPOINT ["dotnet", "Ametista.Api.dll", "--environment=Docker"]
